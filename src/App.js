@@ -1,25 +1,69 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import styled from "styled-components";
+import { Route, Routes } from "react-router-dom";
+//import LoginPage from "./components/LoginPage";
+import Header from "./components/Header";
+import HomePage from "./components/Homepage/HomePage";
 
-function App() {
+export default function App() {
+  const [isSurveySubmitted, setIsSurveySubmitted] = useState(false);
+  const [userAnswers, setUserAnswers] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(()=>{
+    //setIsLoggedIn(false);
+  },[])
+
+  // if(!isLoggedIn){
+  //   return(
+  //     <LoginPage setIsLoggedIn={setIsLoggedIn}/>
+  //   )
+  // }
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <PageWrapper>
+
+        <Header />
+          <div >
+            {/* <NavBar /> */}
+            {/* <img src={logo} className="App-logo" alt="logo" /> */}
+            <Routes>
+              <Route
+                exact
+                path="/"
+                element={<HomePage/>}
+              />
+
+            
+
+            </Routes>
+          </div>
+        <div className="separaterBottomFooter" />
+        {/* <Footer /> */}
+    </PageWrapper>
   );
 }
 
-export default App;
+const PageWrapper = styled.nav`
+  .separaterBottomFooter {
+    margin-bottom: 60px;
+  }
+  //display:flex;
+  height: 100%;
+  .routeLeft{
+    display:flex;
+    justify-content: left !important;
+  }
+  .routeCenter{
+    display:flex;
+    justify-content: center !important;
+  }
+  .contentWrapper {
+    /* display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center; */
+  }
+`;
